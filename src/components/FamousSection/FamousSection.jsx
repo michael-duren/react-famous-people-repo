@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './FamousSection.css';
+import Form from '../Form/Form';
+import PersonList from '../PersonList/PersonList';
 
 function FamousSection() {
   let [famousPersonName, setPersonName] = useState('');
@@ -57,33 +59,17 @@ function FamousSection() {
 
   return (
     <section className="new-person-section">
-      <form onSubmit={addPerson}>
-        <label htmlFor="name-input">Name:</label>
-        <input
-          value={famousPersonName}
-          id="name-input"
-          onChange={(e) => setPersonName(e.target.value)}
-        />
-        <label htmlFor="role-input">Famous for:</label>
-        <input
-          value={famousPersonRole}
-          id="role-input"
-          onChange={(e) => setPersonRole(e.target.value)}
-        />
-        <button type="submit">Done</button>
-      </form>
+      <Form
+        addPerson={addPerson}
+        famousPersonName={famousPersonName}
+        famousPersonRole={famousPersonRole}
+        setPersonName={setPersonName}
+        setPersonRole={setPersonRole}
+      />
       <p>
         {famousPersonName} is famous for "{famousPersonRole}".
       </p>
-      <ul>
-        {famousPeopleArray.map((person) => {
-          return (
-            <li key={person.id}>
-              {person.name} is famous for {person.role}
-            </li>
-          );
-        })}
-      </ul>
+      <PersonList famousPeopleArray={famousPeopleArray} />
     </section>
   );
 }
