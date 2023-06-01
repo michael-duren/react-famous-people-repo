@@ -30,6 +30,9 @@ function FamousSection() {
       role: famousPersonRole,
     };
 
+    setPersonName('');
+    setPersonRole('');
+
     // TODO: create POST request to add this new person to the database
     fetch('/people', {
       method: 'POST',
@@ -57,11 +60,13 @@ function FamousSection() {
       <form onSubmit={addPerson}>
         <label htmlFor="name-input">Name:</label>
         <input
+          value={famousPersonName}
           id="name-input"
           onChange={(e) => setPersonName(e.target.value)}
         />
         <label htmlFor="role-input">Famous for:</label>
         <input
+          value={famousPersonRole}
           id="role-input"
           onChange={(e) => setPersonRole(e.target.value)}
         />
